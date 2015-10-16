@@ -40,6 +40,7 @@ class atop (
     group   => $conf_file_group,
     mode    => $conf_file_mode,
     content => template($conf_file_template),
+    notify  => Service[$service_name],
   } ->
   service { $service_name:
     ensure => $service_state,
