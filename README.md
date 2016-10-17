@@ -10,6 +10,7 @@ Tested under:
 * Scientific Linux 5
 * Scientific Linux 6
 * CentOS 6
+* Centos 7
 * Debian Wheezy
 
 ## Usage
