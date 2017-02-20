@@ -46,7 +46,7 @@ class atop (
     ensure => $service_state,
     enable => $service,
   }
-  if (defined $keepdays) {
+  if ($keepdays != undef) {
       cron {
         'remove_atop':
             hour    => '21',
