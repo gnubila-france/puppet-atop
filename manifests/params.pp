@@ -7,6 +7,7 @@ class atop::params {
   $service = false
   $interval = 600
   $logpath = '/var/log/atop'
+  $keepdays = undef
   $conf_file = $::osfamily ? {
     'Debian' => '/etc/default/atop',
     'RedHat' => '/etc/sysconfig/atop',

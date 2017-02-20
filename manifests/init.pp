@@ -25,6 +25,7 @@ class atop (
   $service = $atop::params::service,
   $interval = $atop::params::interval,
   $logpath = $atop::params::logpath,
+  $keepdays = $atop::params::keepdays
 ) inherits atop::params {
   $service_state = $service ? {
     true    => 'running',
@@ -44,6 +45,19 @@ class atop (
   service { $service_name:
     ensure => $service_state,
     enable => $service,
+  }
+  if (defined $keepdays) {
+      cron {
+        'remove_atop':
+            hour    => '21',
+            minute  => '13',
+            command => "/usr/bin/find ${logpath} -maxdepth 1 -mount -name atop_20* -mtime +${keepdays} -delete",
+            user    => 'root';
+      }
+      file {
+        '/etc/logrotate.d/atop':
+            ensure => absent
+      }
   }
 }
 
