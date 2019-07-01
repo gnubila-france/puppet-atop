@@ -9,7 +9,7 @@ class atop::params {
   $logpath = '/var/log/atop'
   $keepdays = undef
   $conf_file = $::osfamily ? {
-    'Debian|Archlinux' => '/etc/default/atop',
+    /Debian|Archlinux/ => '/etc/default/atop',
     'RedHat' => '/etc/sysconfig/atop',
     default  => fail('Unsupported Operating System.'),
   }
