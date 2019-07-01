@@ -46,7 +46,7 @@ class atop (
     ensure => $service_state,
     enable => $service,
   }
-  if ($keepdays != undef) {
+  if ($keepdays != undef and $::osfamily != 'Archlinux') {
       cron {
         'remove_atop':
             hour    => '21',
