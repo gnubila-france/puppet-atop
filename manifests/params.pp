@@ -16,9 +16,12 @@ class atop::params {
   $conf_file_owner = 'root'
   $conf_file_group = 'root'
   $conf_file_mode = '0644'
-  $conf_file_template = $::osfamily ? {
-    /Debian|RedHat|Archlinux/ => "atop/atop-${::osfamily}.erb",
-    default  => fail('Unsupported Operating System.'),
+  if (::systemd) {
+      $conf_file_template = "atop/atop-Archlinux.erb"
+  } else {
+      $conf_file_template = $::osfamily ? {
+        /Debian|RedHat|Archlinux/ => "atop/atop-${::osfamily}.erb",
+        default  => fail('Unsupported Operating System.'),
   }
 }
 # vim: set et sw=2:
