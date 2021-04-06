@@ -13,10 +13,14 @@ class atop::params {
     'RedHat' => '/etc/sysconfig/atop',
     default  => fail('Unsupported Operating System.'),
   }
+  $daily_restart = $::osfamily ? {
+    'RedHat' => true,
+    default  => false
+  }
   $conf_file_owner = 'root'
   $conf_file_group = 'root'
   $conf_file_mode = '0644'
-  if (::systemd) {
+  if ($::systemd) {
       $conf_file_template = "atop/atop-Archlinux.erb"
   } else {
       $conf_file_template = $::osfamily ? {
