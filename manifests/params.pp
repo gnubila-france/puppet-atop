@@ -13,7 +13,7 @@ class atop::params {
     'RedHat' => '/etc/sysconfig/atop',
     default  => fail('Unsupported Operating System.'),
   }
-  $daily_restart = $::osfamily ? {
+  $daily_restarts = $::osfamily ? {
     'RedHat' => true,
     default  => false
   }
