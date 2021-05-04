@@ -72,7 +72,7 @@ class atop (
   if ($daily_restarts) {
     file {
       '/etc/cron.d/atop':
-        content => '0 0 * * * root systemctl try-restart atop'
+        content => '0 0 * * * root systemctl try-restart atop\n'
     }
   }
 }
