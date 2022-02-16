@@ -20,7 +20,7 @@ class atop::params {
   $conf_file_owner = 'root'
   $conf_file_group = 'root'
   $conf_file_mode = '0644'
-  if ($::systemd) {
+  if ($facts.get('systemd', true)) {
       $conf_file_template = "atop/atop-Archlinux.erb"
   } else {
       $conf_file_template = $::osfamily ? {
