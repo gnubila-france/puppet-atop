@@ -13,3 +13,6 @@ BINPATH=/usr/bin
 PIDFILE=/var/run/atop.pid
 # interval (default 10 minutes)
 INTERVAL=<%= @interval %>
+
+# Hmm ... on EL7 it seems like the script expects LOGINTERVAL, not just INTERVAL
+LOGINTERVAL=INTERVAL
